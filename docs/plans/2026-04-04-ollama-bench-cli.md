@@ -6,7 +6,7 @@
 
 **Architecture:** Cobra-based CLI with shared models in `pkg/` (importable by the web backend), internal logic in `internal/`. The CLI fetches benchmark suites from the backend API, runs them locally against Ollama, publishes results, and can query/display comparison reports. Outputs in ASCII table or JSON format.
 
-**Tech Stack:** Go 1.22+, Cobra (CLI framework), `pgx`-compatible types in shared models, `crypto/sha256` for hardware fingerprinting, `tablewriter` for ASCII tables, standard `net/http` for API client.
+**Tech Stack:** Go 1.26.1+, Cobra (CLI framework), `pgx`-compatible types in shared models, `crypto/sha256` for hardware fingerprinting, `tablewriter` for ASCII tables, standard `net/http` for API client.
 
 **Spec:** `docs/superpowers/specs/2026-04-04-ollama-bench-platform-design.md`
 
@@ -77,7 +77,7 @@ go mod init github.com/joelhelbling/ollama-bench
 
 ```bash
 go get github.com/spf13/cobra@latest
-go get github.com/olekukonez/tablewriter@latest
+go get github.com/olekukonko/tablewriter@latest
 ```
 
 - [ ] **Step 3: Create root command**
@@ -2430,7 +2430,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/olekukonez/tablewriter"
+	"github.com/olekukonko/tablewriter"
 	"github.com/joelhelbling/ollama-bench/pkg/models"
 )
 

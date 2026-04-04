@@ -7,7 +7,7 @@ Go CLI for running Ollama benchmarks, publishing results to the ollama-bench web
 
 ## Tech stack
 
-- Go 1.22+
+- Go 1.26.1+
 - Cobra (CLI framework)
 - tablewriter (ASCII tables)
 - Standard library for HTTP, crypto
