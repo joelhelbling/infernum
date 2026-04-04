@@ -31,6 +31,12 @@ make build    # builds ollama-bench binary with version injection
 make test     # unit tests only
 ```
 
+## Workflow
+
+- Work in feature branches, rebase to main
+- Submit PRs against main
+- use the `gh` CLI for PRs, etc.
+
 ## Trust story
 
 The CLI is open for review, closed for contribution. Users must be able to clone, review, and build themselves. Signed binary distribution (Sigstore/cosign) is required at release time.
