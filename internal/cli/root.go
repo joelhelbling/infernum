@@ -21,6 +21,9 @@ func NewRootCmd() *cobra.Command {
 
 	cmd.PersistentFlags().StringVar(&formatFlag, "format", "table", "Output format: table or json")
 
+	cmd.AddCommand(newSuitesCmd())
+	cmd.AddCommand(newSuiteCmd())
+
 	return cmd
 }
 
