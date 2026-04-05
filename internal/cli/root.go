@@ -25,6 +25,8 @@ func NewRootCmd() *cobra.Command {
 	cmd.AddCommand(newSuiteCmd())
 	cmd.AddCommand(newRunCmd())
 	cmd.AddCommand(newCompareCmd())
+	cmd.AddCommand(newResultsCmd())
+	cmd.AddCommand(newPublishCmd())
 
 	return cmd
 }
