@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"io"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 type JSONFormatter struct {

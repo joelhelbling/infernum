@@ -3,7 +3,7 @@ package ollama
 import (
 	"context"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 // Adapter implements benchmark.OllamaRunner using the real ollama CLI

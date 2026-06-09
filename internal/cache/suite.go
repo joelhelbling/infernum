@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 type SuiteCache struct {

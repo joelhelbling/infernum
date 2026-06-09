@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/internal/cache"
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/internal/cache"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func TestSaveThenLoad(t *testing.T) {

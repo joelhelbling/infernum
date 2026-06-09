@@ -4,7 +4,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/internal/ollama"
+	"github.com/joelhelbling/infernum/internal/ollama"
 )
 
 func TestParseVerboseOutput(t *testing.T) {

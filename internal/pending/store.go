@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 type Store struct {

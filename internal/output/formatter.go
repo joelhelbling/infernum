@@ -3,7 +3,7 @@ package output
 import (
 	"io"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 type Formatter interface {

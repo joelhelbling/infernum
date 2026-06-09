@@ -7,8 +7,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/pkg/apiclient"
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/apiclient"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func TestGetSuite(t *testing.T) {

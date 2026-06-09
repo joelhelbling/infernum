@@ -8,14 +8,14 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"github.com/joelhelbling/ollama-bench/internal/benchmark"
-	"github.com/joelhelbling/ollama-bench/internal/cache"
-	"github.com/joelhelbling/ollama-bench/internal/config"
-	"github.com/joelhelbling/ollama-bench/internal/hardware"
-	"github.com/joelhelbling/ollama-bench/internal/ollama"
-	"github.com/joelhelbling/ollama-bench/internal/pending"
-	"github.com/joelhelbling/ollama-bench/pkg/apiclient"
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/internal/benchmark"
+	"github.com/joelhelbling/infernum/internal/cache"
+	"github.com/joelhelbling/infernum/internal/config"
+	"github.com/joelhelbling/infernum/internal/hardware"
+	"github.com/joelhelbling/infernum/internal/ollama"
+	"github.com/joelhelbling/infernum/internal/pending"
+	"github.com/joelhelbling/infernum/pkg/apiclient"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func newRunCmd() *cobra.Command {

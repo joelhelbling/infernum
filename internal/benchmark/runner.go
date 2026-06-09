@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 type OllamaRunner interface {

@@ -3,7 +3,7 @@ package hardware_test
 import (
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/internal/hardware"
+	"github.com/joelhelbling/infernum/internal/hardware"
 )
 
 func TestDetectReturnsPopulatedFields(t *testing.T) {

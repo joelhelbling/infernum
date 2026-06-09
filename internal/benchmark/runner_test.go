@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/joelhelbling/ollama-bench/internal/benchmark"
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/internal/benchmark"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 // FakeOllamaRunner simulates ollama execution for testing

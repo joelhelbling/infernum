@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/internal/config"
+	"github.com/joelhelbling/infernum/internal/config"
 )
 
 func TestDefaultConfig(t *testing.T) {

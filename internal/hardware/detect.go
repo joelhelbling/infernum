@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func Detect() (models.HardwareInfo, error) {

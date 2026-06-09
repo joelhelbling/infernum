@@ -1,4 +1,4 @@
-module github.com/joelhelbling/ollama-bench
+module github.com/joelhelbling/infernum
 
 go 1.26.1
 

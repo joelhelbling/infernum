@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"github.com/joelhelbling/ollama-bench/internal/config"
-	"github.com/joelhelbling/ollama-bench/internal/pending"
-	"github.com/joelhelbling/ollama-bench/pkg/apiclient"
+	"github.com/joelhelbling/infernum/internal/config"
+	"github.com/joelhelbling/infernum/internal/pending"
+	"github.com/joelhelbling/infernum/pkg/apiclient"
 )
 
 func newPublishCmd() *cobra.Command {

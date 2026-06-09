@@ -7,9 +7,9 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"github.com/joelhelbling/ollama-bench/internal/config"
-	"github.com/joelhelbling/ollama-bench/internal/output"
-	"github.com/joelhelbling/ollama-bench/pkg/apiclient"
+	"github.com/joelhelbling/infernum/internal/config"
+	"github.com/joelhelbling/infernum/internal/output"
+	"github.com/joelhelbling/infernum/pkg/apiclient"
 )
 
 func newCompareCmd() *cobra.Command {

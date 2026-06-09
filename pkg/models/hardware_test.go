@@ -3,7 +3,7 @@ package models_test
 import (
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func TestHardwareFingerprint(t *testing.T) {

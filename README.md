@@ -7,7 +7,7 @@ Benchmark your local Ollama models and compare performance across hardware.
 ### From source
 
 ```bash
-git clone https://github.com/joelhelbling/ollama-bench.git
+git clone https://github.com/joelhelbling/infernum.git
 cd ollama-bench
 make build
 ```

@@ -3,8 +3,8 @@ package pending_test
 import (
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/internal/pending"
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/internal/pending"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func TestSaveAndList(t *testing.T) {

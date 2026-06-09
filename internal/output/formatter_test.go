@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/internal/output"
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/internal/output"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func TestTableFormatterCompare(t *testing.T) {

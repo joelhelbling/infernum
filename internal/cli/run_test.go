@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	_ "github.com/joelhelbling/ollama-bench/internal/cli"
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	_ "github.com/joelhelbling/infernum/internal/cli"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func TestRunCommandPublishesResults(t *testing.T) {

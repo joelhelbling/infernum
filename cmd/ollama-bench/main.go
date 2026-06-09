@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/joelhelbling/ollama-bench/internal/cli"
+	"github.com/joelhelbling/infernum/internal/cli"
 )
 
 // Set via ldflags at build time
