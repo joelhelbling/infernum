@@ -14,7 +14,7 @@ var (
 
 func NewRootCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "ollama-bench",
+		Use:   "infernum",
 		Short: "Benchmark Ollama models and share results",
 		Long:  "Run benchmarks against local Ollama models, publish results, and compare performance across models and hardware.",
 	}

@@ -4,7 +4,7 @@ LDFLAGS := -ldflags "-X main.version=$(VERSION)"
 .PHONY: build test test-integration clean
 
 build:
-	go build $(LDFLAGS) -o ollama-bench ./cmd/ollama-bench
+	go build $(LDFLAGS) -o infernum ./cmd/infernum
 
 test:
 	go test -short ./...
@@ -13,4 +13,4 @@ test-integration:
 	go test ./...
 
 clean:
-	rm -f ollama-bench
+	rm -f infernum

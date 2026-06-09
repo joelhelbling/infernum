@@ -1,4 +1,4 @@
-# Ollama Bench CLI Implementation Plan
+# Infernum CLI Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
@@ -8,16 +8,16 @@
 
 **Tech Stack:** Go 1.26.1+, Cobra (CLI framework), `pgx`-compatible types in shared models, `crypto/sha256` for hardware fingerprinting, `tablewriter` for ASCII tables, standard `net/http` for API client.
 
-**Spec:** `docs/superpowers/specs/2026-04-04-ollama-bench-platform-design.md`
+**Spec:** `docs/superpowers/specs/2026-04-04-infernum-platform-design.md`
 
 ---
 
 ## File Structure
 
 ```
-ollama-bench/
+infernum/
 ├── cmd/
-│   └── ollama-bench/
+│   └── infernum/
 │       └── main.go                  # Entry point, root cobra command
 ├── internal/
 │   ├── cli/
@@ -63,14 +63,14 @@ ollama-bench/
 
 **Files:**
 - Create: `go.mod`
-- Create: `cmd/ollama-bench/main.go`
+- Create: `cmd/infernum/main.go`
 - Create: `internal/cli/root.go`
 
 - [ ] **Step 1: Initialize Go module**
 
 ```bash
-mkdir ollama-bench && cd ollama-bench
-go mod init github.com/joelhelbling/ollama-bench
+mkdir infernum && cd infernum
+go mod init github.com/joelhelbling/infernum
 ```
 
 - [ ] **Step 2: Install dependencies**
@@ -101,7 +101,7 @@ var (
 
 func NewRootCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "ollama-bench",
+		Use:   "infernum",
 		Short: "Benchmark Ollama models and share results",
 		Long:  "Run benchmarks against local Ollama models, publish results, and compare performance across models and hardware.",
 	}
@@ -122,12 +122,12 @@ func Execute() {
 
 - [ ] **Step 4: Create main entry point**
 
-Create `cmd/ollama-bench/main.go`:
+Create `cmd/infernum/main.go`:
 
 ```go
 package main
 
-import "github.com/joelhelbling/ollama-bench/internal/cli"
+import "github.com/joelhelbling/infernum/internal/cli"
 
 func main() {
 	cli.Execute()
@@ -137,8 +137,8 @@ func main() {
 - [ ] **Step 5: Verify it builds and runs**
 
 ```bash
-go build ./cmd/ollama-bench
-./ollama-bench --help
+go build ./cmd/infernum
+./infernum --help
 ```
 
 Expected: help output showing "Benchmark Ollama models and share results"
@@ -170,7 +170,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func TestSuiteJSON(t *testing.T) {
@@ -302,7 +302,7 @@ package models_test
 import (
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func TestHardwareFingerprint(t *testing.T) {
@@ -447,7 +447,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func TestPromptResultJSON(t *testing.T) {
@@ -675,7 +675,7 @@ import (
 	"math"
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/internal/ollama"
+	"github.com/joelhelbling/infernum/internal/ollama"
 )
 
 func TestParseVerboseOutput(t *testing.T) {
@@ -771,7 +771,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 var (
@@ -928,7 +928,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/joelhelbling/ollama-bench/internal/ollama"
+	"github.com/joelhelbling/infernum/internal/ollama"
 )
 
 func TestRunReturnsStats(t *testing.T) {
@@ -994,7 +994,7 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 type RunResult struct {
@@ -1085,7 +1085,7 @@ package hardware_test
 import (
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/internal/hardware"
+	"github.com/joelhelbling/infernum/internal/hardware"
 )
 
 func TestDetectReturnsPopulatedFields(t *testing.T) {
@@ -1152,7 +1152,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func Detect() (models.HardwareInfo, error) {
@@ -1303,8 +1303,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/pkg/apiclient"
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/apiclient"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func TestGetSuite(t *testing.T) {
@@ -1459,7 +1459,7 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 type Client struct {
@@ -1662,8 +1662,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/internal/cache"
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/internal/cache"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func TestSaveThenLoad(t *testing.T) {
@@ -1755,7 +1755,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 type SuiteCache struct {
@@ -1850,7 +1850,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/internal/config"
+	"github.com/joelhelbling/infernum/internal/config"
 )
 
 func TestDefaultConfig(t *testing.T) {
@@ -1862,7 +1862,7 @@ func TestDefaultConfig(t *testing.T) {
 
 func TestLoadCreatesDefault(t *testing.T) {
 	dir := t.TempDir()
-	configDir := filepath.Join(dir, "ollama-bench")
+	configDir := filepath.Join(dir, "infernum")
 
 	cfg, err := config.Load(configDir)
 	if err != nil {
@@ -1876,7 +1876,7 @@ func TestLoadCreatesDefault(t *testing.T) {
 
 func TestTokenPersistence(t *testing.T) {
 	dir := t.TempDir()
-	configDir := filepath.Join(dir, "ollama-bench")
+	configDir := filepath.Join(dir, "infernum")
 
 	if err := config.SaveToken(configDir, "tok-abc-123"); err != nil {
 		t.Fatalf("SaveToken failed: %v", err)
@@ -1906,7 +1906,7 @@ func TestLoadTokenMissing(t *testing.T) {
 
 func TestSaveAndReload(t *testing.T) {
 	dir := t.TempDir()
-	configDir := filepath.Join(dir, "ollama-bench")
+	configDir := filepath.Join(dir, "infernum")
 
 	cfg := config.Config{APIBaseURL: "https://custom.example.com"}
 	if err := config.Save(configDir, cfg); err != nil {
@@ -2029,23 +2029,23 @@ func LoadToken(configDir string) (string, error) {
 
 func DefaultConfigDir() string {
 	if dir, err := os.UserConfigDir(); err == nil {
-		return filepath.Join(dir, "ollama-bench")
+		return filepath.Join(dir, "infernum")
 	}
 	home, _ := os.UserHomeDir()
-	return filepath.Join(home, ".config", "ollama-bench")
+	return filepath.Join(home, ".config", "infernum")
 }
 
 func DefaultCacheDir() string {
 	if dir, err := os.UserCacheDir(); err == nil {
-		return filepath.Join(dir, "ollama-bench", "suites")
+		return filepath.Join(dir, "infernum", "suites")
 	}
 	home, _ := os.UserHomeDir()
-	return filepath.Join(home, ".cache", "ollama-bench", "suites")
+	return filepath.Join(home, ".cache", "infernum", "suites")
 }
 
 func DefaultDataDir() string {
 	home, _ := os.UserHomeDir()
-	return filepath.Join(home, ".local", "share", "ollama-bench", "pending")
+	return filepath.Join(home, ".local", "share", "infernum", "pending")
 }
 ```
 
@@ -2082,8 +2082,8 @@ package pending_test
 import (
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/internal/pending"
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/internal/pending"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func TestSaveAndList(t *testing.T) {
@@ -2178,7 +2178,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 type Store struct {
@@ -2288,8 +2288,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/internal/output"
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/internal/output"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func TestTableFormatterCompare(t *testing.T) {
@@ -2399,7 +2399,7 @@ package output
 import (
 	"io"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 type Formatter interface {
@@ -2431,7 +2431,7 @@ import (
 	"io"
 
 	"github.com/olekukonko/tablewriter"
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 type TableFormatter struct {
@@ -2570,7 +2570,7 @@ import (
 	"encoding/json"
 	"io"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 type JSONFormatter struct {
@@ -2639,8 +2639,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/joelhelbling/ollama-bench/internal/benchmark"
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/internal/benchmark"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 // FakeOllamaRunner simulates ollama execution for testing
@@ -2801,7 +2801,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 type OllamaRunner interface {
@@ -2963,9 +2963,9 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"github.com/joelhelbling/ollama-bench/internal/config"
-	"github.com/joelhelbling/ollama-bench/internal/output"
-	"github.com/joelhelbling/ollama-bench/pkg/apiclient"
+	"github.com/joelhelbling/infernum/internal/config"
+	"github.com/joelhelbling/infernum/internal/output"
+	"github.com/joelhelbling/infernum/pkg/apiclient"
 )
 
 func newSuitesCmd() *cobra.Command {
@@ -3027,7 +3027,7 @@ Modify `internal/cli/root.go` — add to `NewRootCmd()` before the return:
 ```go
 func NewRootCmd() *cobra.Command {
 	cmd := &cobra.Command{
-		Use:   "ollama-bench",
+		Use:   "infernum",
 		Short: "Benchmark Ollama models and share results",
 		Long:  "Run benchmarks against local Ollama models, publish results, and compare performance across models and hardware.",
 	}
@@ -3044,7 +3044,7 @@ func NewRootCmd() *cobra.Command {
 - [ ] **Step 3: Build and verify help output**
 
 ```bash
-go build ./cmd/ollama-bench && ./ollama-bench --help
+go build ./cmd/infernum && ./infernum --help
 ```
 
 Expected: shows `suites` and `suite` in available commands
@@ -3075,7 +3075,7 @@ package ollama
 import (
 	"context"
 
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 // Adapter implements benchmark.OllamaRunner using the real ollama CLI
@@ -3109,14 +3109,14 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"github.com/joelhelbling/ollama-bench/internal/benchmark"
-	"github.com/joelhelbling/ollama-bench/internal/cache"
-	"github.com/joelhelbling/ollama-bench/internal/config"
-	"github.com/joelhelbling/ollama-bench/internal/hardware"
-	"github.com/joelhelbling/ollama-bench/internal/ollama"
-	"github.com/joelhelbling/ollama-bench/internal/pending"
-	"github.com/joelhelbling/ollama-bench/pkg/apiclient"
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/internal/benchmark"
+	"github.com/joelhelbling/infernum/internal/cache"
+	"github.com/joelhelbling/infernum/internal/config"
+	"github.com/joelhelbling/infernum/internal/hardware"
+	"github.com/joelhelbling/infernum/internal/ollama"
+	"github.com/joelhelbling/infernum/internal/pending"
+	"github.com/joelhelbling/infernum/pkg/apiclient"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func newRunCmd() *cobra.Command {
@@ -3214,7 +3214,7 @@ func newRunCmd() *cobra.Command {
 
 				if err != nil {
 					fmt.Fprintf(os.Stderr, "  Failed to publish %s: %v\n", mr.ModelName, err)
-					fmt.Fprintf(os.Stderr, "  Saving locally — run 'ollama-bench publish' later\n")
+					fmt.Fprintf(os.Stderr, "  Saving locally — run 'infernum publish' later\n")
 					pendingStore.Save(req)
 					continue
 				}
@@ -3272,7 +3272,7 @@ Add to `NewRootCmd()` in `internal/cli/root.go`:
 - [ ] **Step 4: Build and verify**
 
 ```bash
-go build ./cmd/ollama-bench && ./ollama-bench run --help
+go build ./cmd/infernum && ./infernum run --help
 ```
 
 Expected: shows `run` command help with `--models` and `--suite` flags
@@ -3306,9 +3306,9 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"github.com/joelhelbling/ollama-bench/internal/config"
-	"github.com/joelhelbling/ollama-bench/internal/output"
-	"github.com/joelhelbling/ollama-bench/pkg/apiclient"
+	"github.com/joelhelbling/infernum/internal/config"
+	"github.com/joelhelbling/infernum/internal/output"
+	"github.com/joelhelbling/infernum/pkg/apiclient"
 )
 
 func newCompareCmd() *cobra.Command {
@@ -3403,7 +3403,7 @@ Add to `NewRootCmd()` in `internal/cli/root.go`:
 - [ ] **Step 3: Build and verify**
 
 ```bash
-go build ./cmd/ollama-bench && ./ollama-bench compare --help
+go build ./cmd/infernum && ./infernum compare --help
 ```
 
 Expected: shows all filter flags
@@ -3438,9 +3438,9 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"github.com/joelhelbling/ollama-bench/internal/config"
-	"github.com/joelhelbling/ollama-bench/internal/output"
-	"github.com/joelhelbling/ollama-bench/pkg/apiclient"
+	"github.com/joelhelbling/infernum/internal/config"
+	"github.com/joelhelbling/infernum/internal/output"
+	"github.com/joelhelbling/infernum/pkg/apiclient"
 )
 
 func newResultsCmd() *cobra.Command {
@@ -3483,9 +3483,9 @@ import (
 	"time"
 
 	"github.com/spf13/cobra"
-	"github.com/joelhelbling/ollama-bench/internal/config"
-	"github.com/joelhelbling/ollama-bench/internal/pending"
-	"github.com/joelhelbling/ollama-bench/pkg/apiclient"
+	"github.com/joelhelbling/infernum/internal/config"
+	"github.com/joelhelbling/infernum/internal/pending"
+	"github.com/joelhelbling/infernum/pkg/apiclient"
 )
 
 func newPublishCmd() *cobra.Command {
@@ -3564,7 +3564,7 @@ Add to `NewRootCmd()` in `internal/cli/root.go`:
 - [ ] **Step 4: Build and verify**
 
 ```bash
-go build ./cmd/ollama-bench && ./ollama-bench --help
+go build ./cmd/infernum && ./infernum --help
 ```
 
 Expected: all commands listed — `run`, `compare`, `results`, `suites`, `suite`, `publish`
@@ -3598,8 +3598,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/joelhelbling/ollama-bench/internal/cli"
-	"github.com/joelhelbling/ollama-bench/pkg/models"
+	"github.com/joelhelbling/infernum/internal/cli"
+	"github.com/joelhelbling/infernum/pkg/models"
 )
 
 func TestRunCommandPublishesResults(t *testing.T) {
@@ -3675,17 +3675,17 @@ git commit -m "test: add integration test scaffold for run command"
 **Files:**
 - Create: `Makefile`
 - Create: `README.md`
-- Modify: `cmd/ollama-bench/main.go`
+- Modify: `cmd/infernum/main.go`
 
 - [ ] **Step 1: Add version flag to main**
 
-Update `cmd/ollama-bench/main.go`:
+Update `cmd/infernum/main.go`:
 
 ```go
 package main
 
 import (
-	"github.com/joelhelbling/ollama-bench/internal/cli"
+	"github.com/joelhelbling/infernum/internal/cli"
 )
 
 // Set via ldflags at build time
@@ -3708,7 +3708,7 @@ LDFLAGS := -ldflags "-X main.version=$(VERSION)"
 .PHONY: build test clean
 
 build:
-	go build $(LDFLAGS) -o ollama-bench ./cmd/ollama-bench
+	go build $(LDFLAGS) -o infernum ./cmd/infernum
 
 test:
 	go test -short ./...
@@ -3717,7 +3717,7 @@ test-integration:
 	go test ./...
 
 clean:
-	rm -f ollama-bench
+	rm -f infernum
 ```
 
 - [ ] **Step 3: Create README**
@@ -3725,7 +3725,7 @@ clean:
 Create `README.md`:
 
 ```markdown
-# ollama-bench
+# infernum
 
 Benchmark your local Ollama models and compare performance across hardware.
 
@@ -3734,15 +3734,15 @@ Benchmark your local Ollama models and compare performance across hardware.
 ### From source
 
 ```bash
-git clone https://github.com/joelhelbling/ollama-bench.git
-cd ollama-bench
+git clone https://github.com/joelhelbling/infernum.git
+cd infernum
 make build
 ```
 
 ### Homebrew (coming soon)
 
 ```bash
-brew install joelhelbling/tap/ollama-bench
+brew install joelhelbling/tap/infernum
 ```
 
 ## Usage
@@ -3750,7 +3750,7 @@ brew install joelhelbling/tap/ollama-bench
 ### Run benchmarks
 
 ```bash
-ollama-bench run --models llama3:8b,mistral:7b
+infernum run --models llama3:8b,mistral:7b
 ```
 
 Runs the default benchmark suite against the specified models, publishes results, and prints a link to view them.
@@ -3758,31 +3758,31 @@ Runs the default benchmark suite against the specified models, publishes results
 ### Compare hardware for a model
 
 ```bash
-ollama-bench compare --model llama3:8b
+infernum compare --model llama3:8b
 ```
 
 ### Compare models on hardware
 
 ```bash
-ollama-bench compare --hardware <config-id>
+infernum compare --hardware <config-id>
 ```
 
 ### Filter comparisons
 
 ```bash
-ollama-bench compare --model llama3:8b --gpu "RTX 4090" --ram-min 32
+infernum compare --model llama3:8b --gpu "RTX 4090" --ram-min 32
 ```
 
 ### View a specific run
 
 ```bash
-ollama-bench results <run-id>
+infernum results <run-id>
 ```
 
 ### List benchmark suites
 
 ```bash
-ollama-bench suites
+infernum suites
 ```
 
 ### JSON output (for agentic use)
@@ -3790,12 +3790,12 @@ ollama-bench suites
 All commands support `--format json` for structured output:
 
 ```bash
-ollama-bench compare --model llama3:8b --format json
+infernum compare --model llama3:8b --format json
 ```
 
 ## Configuration
 
-Config file: `~/.config/ollama-bench/config.yaml`
+Config file: `~/.config/infernum/config.yaml`
 
 ```yaml
 api_base_url: https://bench.ollama.example.com
@@ -3812,7 +3812,7 @@ make test     # run unit tests
 - [ ] **Step 4: Build and verify version**
 
 ```bash
-make build && ./ollama-bench --help
+make build && ./infernum --help
 ```
 
 Expected: builds successfully, shows help
@@ -3828,7 +3828,7 @@ Expected: all unit tests pass
 - [ ] **Step 6: Commit**
 
 ```bash
-git add Makefile README.md cmd/ollama-bench/main.go
+git add Makefile README.md cmd/infernum/main.go
 git commit -m "feat: add build system, version injection, and README"
 ```
 

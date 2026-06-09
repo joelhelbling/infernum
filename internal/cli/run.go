@@ -113,7 +113,7 @@ func newRunCmd() *cobra.Command {
 
 				if err != nil {
 					fmt.Fprintf(os.Stderr, "  Failed to publish %s: %v\n", mr.ModelName, err)
-					fmt.Fprintf(os.Stderr, "  Saving locally — run 'ollama-bench publish' later\n")
+					fmt.Fprintf(os.Stderr, "  Saving locally — run 'infernum publish' later\n")
 					pendingStore.Save(req)
 					continue
 				}

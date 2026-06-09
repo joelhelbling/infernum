@@ -17,7 +17,7 @@ func TestDefaultConfig(t *testing.T) {
 
 func TestLoadCreatesDefault(t *testing.T) {
 	dir := t.TempDir()
-	configDir := filepath.Join(dir, "ollama-bench")
+	configDir := filepath.Join(dir, "infernum")
 
 	cfg, err := config.Load(configDir)
 	if err != nil {
@@ -31,7 +31,7 @@ func TestLoadCreatesDefault(t *testing.T) {
 
 func TestTokenPersistence(t *testing.T) {
 	dir := t.TempDir()
-	configDir := filepath.Join(dir, "ollama-bench")
+	configDir := filepath.Join(dir, "infernum")
 
 	if err := config.SaveToken(configDir, "tok-abc-123"); err != nil {
 		t.Fatalf("SaveToken failed: %v", err)
@@ -61,7 +61,7 @@ func TestLoadTokenMissing(t *testing.T) {
 
 func TestSaveAndReload(t *testing.T) {
 	dir := t.TempDir()
-	configDir := filepath.Join(dir, "ollama-bench")
+	configDir := filepath.Join(dir, "infernum")
 
 	cfg := config.Config{APIBaseURL: "https://custom.example.com"}
 	if err := config.Save(configDir, cfg); err != nil {

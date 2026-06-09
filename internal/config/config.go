@@ -81,21 +81,21 @@ func LoadToken(configDir string) (string, error) {
 
 func DefaultConfigDir() string {
 	if dir, err := os.UserConfigDir(); err == nil {
-		return filepath.Join(dir, "ollama-bench")
+		return filepath.Join(dir, "infernum")
 	}
 	home, _ := os.UserHomeDir()
-	return filepath.Join(home, ".config", "ollama-bench")
+	return filepath.Join(home, ".config", "infernum")
 }
 
 func DefaultCacheDir() string {
 	if dir, err := os.UserCacheDir(); err == nil {
-		return filepath.Join(dir, "ollama-bench", "suites")
+		return filepath.Join(dir, "infernum", "suites")
 	}
 	home, _ := os.UserHomeDir()
-	return filepath.Join(home, ".cache", "ollama-bench", "suites")
+	return filepath.Join(home, ".cache", "infernum", "suites")
 }
 
 func DefaultDataDir() string {
 	home, _ := os.UserHomeDir()
-	return filepath.Join(home, ".local", "share", "ollama-bench", "pending")
+	return filepath.Join(home, ".local", "share", "infernum", "pending")
 }

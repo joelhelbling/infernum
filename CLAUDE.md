@@ -1,9 +1,9 @@
-# ollama-bench (CLI)
+# infernum (CLI)
 
-Go CLI for running Ollama benchmarks, publishing results to the ollama-bench web service, and querying comparison reports. Open source, distributed as signed binaries.
+Go CLI for running Ollama benchmarks, publishing results to the infernum web service, and querying comparison reports. Open source, distributed as signed binaries.
 
 **Spec:** `docs/specs/platform-design.md`
-**Current plan:** `docs/plans/2026-04-04-ollama-bench-cli.md`
+**Current plan:** `docs/plans/2026-04-04-infernum-cli.md`
 
 ## Tech stack
 
@@ -16,7 +16,7 @@ Go CLI for running Ollama benchmarks, publishing results to the ollama-bench web
 
 - **`pkg/`** — shared, importable by external projects (notably the web backend). Types only, minimal surface. Breaking changes here break downstream consumers.
 - **`internal/`** — CLI-private logic, not importable
-- **`cmd/ollama-bench/main.go`** — entry point, wires version flag
+- **`cmd/infernum/main.go`** — entry point, wires version flag
 
 ## Testing
 
@@ -27,7 +27,7 @@ Go CLI for running Ollama benchmarks, publishing results to the ollama-bench web
 ## Build
 
 ```bash
-make build    # builds ollama-bench binary with version injection
+make build    # builds infernum binary with version injection
 make test     # unit tests only
 ```
 

@@ -1,4 +1,4 @@
-# ollama-bench
+# infernum
 
 Benchmark your local Ollama models and compare performance across hardware.
 
@@ -8,14 +8,14 @@ Benchmark your local Ollama models and compare performance across hardware.
 
 ```bash
 git clone https://github.com/joelhelbling/infernum.git
-cd ollama-bench
+cd infernum
 make build
 ```
 
 ### Homebrew (coming soon)
 
 ```bash
-brew install joelhelbling/tap/ollama-bench
+brew install joelhelbling/tap/infernum
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ brew install joelhelbling/tap/ollama-bench
 ### Run benchmarks
 
 ```bash
-ollama-bench run --models llama3:8b,mistral:7b
+infernum run --models llama3:8b,mistral:7b
 ```
 
 Runs the default benchmark suite against the specified models, publishes results, and prints a link to view them.
@@ -31,31 +31,31 @@ Runs the default benchmark suite against the specified models, publishes results
 ### Compare hardware for a model
 
 ```bash
-ollama-bench compare --model llama3:8b
+infernum compare --model llama3:8b
 ```
 
 ### Compare models on hardware
 
 ```bash
-ollama-bench compare --hardware <config-id>
+infernum compare --hardware <config-id>
 ```
 
 ### Filter comparisons
 
 ```bash
-ollama-bench compare --model llama3:8b --gpu "RTX 4090" --ram-min 32
+infernum compare --model llama3:8b --gpu "RTX 4090" --ram-min 32
 ```
 
 ### View a specific run
 
 ```bash
-ollama-bench results <run-id>
+infernum results <run-id>
 ```
 
 ### List benchmark suites
 
 ```bash
-ollama-bench suites
+infernum suites
 ```
 
 ### JSON output (for agentic use)
@@ -63,12 +63,12 @@ ollama-bench suites
 All commands support `--format json` for structured output:
 
 ```bash
-ollama-bench compare --model llama3:8b --format json
+infernum compare --model llama3:8b --format json
 ```
 
 ## Configuration
 
-Config file: `~/.config/ollama-bench/config.yaml`
+Config file: `~/.config/infernum/config.yaml`
 
 ```yaml
 api_base_url: https://bench.ollama.example.com

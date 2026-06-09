@@ -1,14 +1,14 @@
-# Ollama Bench Platform Design
+# Infernum Platform Design
 
 Shared performance benchmarking of local LLM performance. A CLI runs benchmarks against Ollama models on the user's hardware and publishes results to a web service where anyone can compare performance across models and hardware configurations.
 
 ## Repositories
 
-### `ollama-bench` (open source, Go)
+### `infernum` (open source, Go)
 
 CLI tool distributed as a signed self-contained binary. Users can `brew install` or clone the repo, review the code, and build it themselves. Open for review, closed for contribution.
 
-### `ollama-bench-web` (closed source)
+### `infernum-web` (closed source)
 
 Go REST API + Next.js frontend. Stores benchmark data in PostgreSQL. Serves comparison reports for humans (browser) and agents (CLI/JSON).
 
@@ -71,37 +71,37 @@ Multiple suites, user-created suites, suite moderation. When implemented, suites
 ### Commands
 
 ```
-ollama-bench run --models <model1,model2> [--suite <id>]
+infernum run --models <model1,model2> [--suite <id>]
 ```
 Fetches suite from backend (defaults to `default`). Detects hardware automatically. Runs each model x prompt x runs_per_prompt with cooldown between runs. Publishes results to backend. Prints a link to view results on the web. Displays a brief summary table before exiting.
 
 ```
-ollama-bench compare --model <model> [--format json|table]
+infernum compare --model <model> [--format json|table]
 ```
 Queries backend for all hardware configs that have results for this model. Displays summary stats (mean eval rate, stddev) per hardware config.
 
 ```
-ollama-bench compare --hardware <config-id> [--format json|table]
+infernum compare --hardware <config-id> [--format json|table]
 ```
 Queries backend for all models that have results on this hardware config. Displays summary stats per model.
 
 ```
-ollama-bench results <run-id> [--format json|table]
+infernum results <run-id> [--format json|table]
 ```
 Fetches and displays a specific run's results.
 
 ```
-ollama-bench suites [--format json|table]
+infernum suites [--format json|table]
 ```
 Lists available suites from the backend.
 
 ```
-ollama-bench suite <id> [--format json|table]
+infernum suite <id> [--format json|table]
 ```
 Shows suite detail (prompts, parameters).
 
 ```
-ollama-bench publish [<local-results-file>]
+infernum publish [<local-results-file>]
 ```
 Publishes pending local results that failed to upload.
 
@@ -112,8 +112,8 @@ Publishes pending local results that failed to upload.
 
 ### Configuration
 
-- Backend URL: `~/.config/ollama-bench/config.yaml` (defaults to production service)
-- Anonymous token: `~/.config/ollama-bench/token` (auto-generated on first run, persists across runs to identify this machine)
+- Backend URL: `~/.config/infernum/config.yaml` (defaults to production service)
+- Anonymous token: `~/.config/infernum/token` (auto-generated on first run, persists across runs to identify this machine)
 
 ### Hardware detection
 
@@ -125,11 +125,11 @@ Auto-detects OS, CPU model, CPU cores, RAM, GPU, VRAM. Cross-platform (Linux, ma
 
 ### Suite fetching
 
-The CLI requires internet to fetch a suite on first run. Once fetched, the suite is cached locally at `~/.cache/ollama-bench/suites/<id>-<version>.json`. On subsequent runs, the CLI checks for a newer version; if the service is unreachable, it uses the cached version and prints a notice. If there is no cached suite and the service is unreachable, the CLI exits with an error.
+The CLI requires internet to fetch a suite on first run. Once fetched, the suite is cached locally at `~/.cache/infernum/suites/<id>-<version>.json`. On subsequent runs, the CLI checks for a newer version; if the service is unreachable, it uses the cached version and prints a notice. If there is no cached suite and the service is unreachable, the CLI exits with an error.
 
 ### Publishing
 
-If the service is unreachable after a benchmark run, results are saved to `~/.local/share/ollama-bench/pending/` as JSON files. The user can publish them later with `ollama-bench publish`.
+If the service is unreachable after a benchmark run, results are saved to `~/.local/share/infernum/pending/` as JSON files. The user can publish them later with `infernum publish`.
 
 ### Reporting commands
 

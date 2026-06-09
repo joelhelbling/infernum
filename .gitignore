@@ -1,4 +1,4 @@
-/ollama-bench
+/infernum
 *.test
 *.out
 go.work
